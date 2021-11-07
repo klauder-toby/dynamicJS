@@ -2,7 +2,6 @@ var can = document.getElementById("myCanvas");
 var ctx = can.getContext("2d");
 ctx.fillStyle = "#CCCCCC"; 
 can.addEventListener("click", canvasClicked);
-/*Square should also be a class with attributes of status (blank, X, or O) and location. It should also have a draw method. */
 
 class Location {
   constructor(x, y) {
@@ -53,6 +52,8 @@ class Canvas {
     ctx.stroke(); 
   }
 }
+
+
 function canvasClicked(e) {
    // Get the canvas and bounding client rectangle
    const canvas = e.target;
@@ -80,53 +81,8 @@ class Square {
    draw() {
        ctx.fillRect(this.location.x * 100, this.location.y * 100, 100, 100);
    }
-  /*get status_() {
-    return this.status;
-  }
-
-  set status_(newStatus) {
-    this.status = newStatus;
-  }
-
-  get location_() {
-    return this.location; 
-  }
-  set location_(newLocation) {
-    this.location = newLocation;
-  }
-  */
 }
 
-class Player {
-  constructor(name, isCurrent, winner) {
-    this.name = name; 
-    this.isCurrent = isCurrent; 
-    this.winner = winner; 
-  }
-  /*
-  get name() {
-    return this.name; 
-  }
-  set name(newName) {
-    this.name = newName;
-  }
-  get isCurrent() {
-    return this.isCurrent;
-  }
-  set isCurrent(newStatus) {
-    this.isCurrent = isCurrent; 
-  }
-  get winner() {
-    return this.winner;
-  }
-  set winner(newWinner){
-    this.winner = newWinner; 
-  }
-  */
-}
-
-let player = new Player("Toby", false, false);
-let player1 = new Player("Dylan", true, false);
 let square0 = new Square("blank", new Location(0, 0));
 let square1 = new Square("blank", new Location(0, 1));
 let square2 = new Square("blank", new Location(0, 2));
@@ -142,7 +98,7 @@ let c = new Canvas(squares);
 function clickSquare(r, c) {
  for(var i in squares) {
    if(squares[i].location.x == r && squares[i].location.y == c) {
-     squares[i].draw(); 
+     squares[i].fillRect("#DDDDDD"); 
    }
  } 
 }
