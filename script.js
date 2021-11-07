@@ -91,6 +91,8 @@ function collisionDetection() {
         for(var j = 0; j < row_cnt; j++) {
             var curr = bricks[i][j]; 
             if(x > curr.x && x < curr.x + brick_width && y > curr.y &&  y < curr.y + brick_height) {
+                dy++; 
+                dx++; 
                 dy = -dy; 
                 curr.hit = 1; 
                 score++; 
@@ -100,9 +102,20 @@ function collisionDetection() {
                 if(getRandomInt(4) == 2) {
                     powerup.innerHTML = "POWER UP: Paddle Expansion";
                     paddleWidth = 125; 
-                    setTimeout(handlePaddlePower, 10000)
+                    setTimeout(handlePaddlePower, 5000)
                 }
-
+                if(getRandomInt(4) == 3) {
+                    powerup.innerHTML = "POWER UP: Ball Slow"; 
+                    if(dy > 0) {
+                        dy = 2;
+                    } else if (dy < 0) {
+                        dy = -2;
+                    } else if (dx > 0) {
+                        dx = 2; 
+                    } else if (dx < 0) {
+                        dx = -2;
+                    }
+                }
             }
         }
     }
