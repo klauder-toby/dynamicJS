@@ -87,7 +87,6 @@ function getRandomInt(max) {
 }
 
 function collisionDetection() {
-    console.log("outer ring");
     for(var i = 0; i < col_cnt; i++) {
         for(var j = 0; j < row_cnt; j++) {
             var curr = bricks[i][j]; 
@@ -100,6 +99,7 @@ function collisionDetection() {
                 console.log(getRandomInt(4) + "");
                 if(getRandomInt(4) == 2) {
                     powerup.innerHTML = "POWER UP: Paddle Expansion";
+                    paddleWidth = 125; 
                 }
 
             }
