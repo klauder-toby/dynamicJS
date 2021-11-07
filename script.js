@@ -87,6 +87,7 @@ function getRandomInt(max) {
 }
 
 function collisionDetection() {
+    console.log("outer ring");
     for(var i = 0; i < col_cnt; i++) {
         for(var j = 0; j < row_cnt; j++) {
             var curr = bricks[i][j]; 
