@@ -24,6 +24,8 @@ let paddleY = (canvas.height - 20);
 let rightPressed = false; 
 let leftPressed = false; 
 let powertext = document.getElementById("powerup");
+let paddlePower = false; 
+let ballSlowPower = false; 
 
 //brick variables 
 let brick_width = 75; 
@@ -122,16 +124,20 @@ function collisionDetection() {
                     } else if (dx > 0) {
                         dx = 2; 
                     }
+                    setTimeout(handleBallSlow, 3000); 
                 }
             }
         }
     }
 }
 
+function handleBallSlow() {
+    powerup.innerHTML = "POWER UP: ";
+}
 
 function handlePaddlePower() {
     paddleWidth = 75; 
-    powerup.innerHTML = "POWER UP: "; 
+    powerup.innerHTML = "POWER UP: ";
 }
 
 function winDetection() {
