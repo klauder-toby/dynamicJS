@@ -2,3 +2,13 @@ canvas {
     display: block; 
     margin: 0 auto;
 }
+
+h1 {
+    font-size: 50px; 
+    text-align: center; 
+    font-family: 'Mochiy Pop P One', sans-serif;
+}
+
+body {
+    background-color: rgb(206, 183, 147, .50); 
+}
