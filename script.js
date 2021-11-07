@@ -1,5 +1,6 @@
 //get the canvas and set it to be 2 dimensional 
 let canvas = document.getElementById("myCanvas");
+console.log(canvas); 
 let ctx = canvas.getContext("2d");
 
 //starting position of the ball is the mid point on the x-axis, and down 30 px from the top on the y-axis
