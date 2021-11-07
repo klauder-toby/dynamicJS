@@ -45,6 +45,7 @@ for(var i = 0; i < col_cnt; i++) {
 
 //score variables 
 var score = 0; 
+var random; 
 
 function drawBricks() {
     for(var i = 0; i < col_cnt; i++) {
@@ -105,11 +106,22 @@ function collisionDetection() {
                 score++; 
                 bricks[i][j].x = 0; 
                 bricks[i][j].y = 0; 
-                console.log(getRandomInt(4) + "");
-                if(getRandomInt(4) == 2) {
+                if(random == 2) {
                     powerup.innerHTML = "POWER UP: Paddle Expansion";
                     paddleWidth = 125; 
-                    setTimeout(handlePaddlePower, 5000)
+                    setTimeout(handlePaddlePower, 3000);
+                } 
+                if(random == 3) {
+                    powerup.innerHTML = "POWER UP: Ball Slow"; 
+                    if(dy < 0) {
+                        dy = -2; 
+                    } else if (dy > 0) {
+                        dy = 2; 
+                    } else if (dx < 0) {
+                        dx = -2; 
+                    } else if (dx > 0) {
+                        dx = 2; 
+                    }
                 }
             }
         }
@@ -137,12 +149,12 @@ function winDetection() {
 
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    random = getRandomInt(4); 
     drawBall();
     drawPaddle();
     drawBricks(); 
     collisionDetection(); 
     winDetection(); 
-    
     //side wall checks 
     if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
         dx = -dx;
