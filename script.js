@@ -100,11 +100,18 @@ function collisionDetection() {
                 if(getRandomInt(4) == 2) {
                     powerup.innerHTML = "POWER UP: Paddle Expansion";
                     paddleWidth = 125; 
+                    setTimeout(handlePaddlePower, 10000)
                 }
 
             }
         }
     }
+}
+
+
+function handlePaddlePower() {
+    paddleWidth = 75; 
+    powerup.innerHTML = "POWER UP: "; 
 }
 
 function winDetection() {
