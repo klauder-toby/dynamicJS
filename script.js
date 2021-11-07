@@ -96,6 +96,7 @@ function collisionDetection() {
                 score++; 
                 bricks[i][j].x = 0; 
                 bricks[i][j].y = 0; 
+                console.log(getRandomInt(4) + "");
                 if(getRandomInt(4) == 2) {
                     powerup.innerHTML = "POWER UP: Paddle Expansion";
                 }
