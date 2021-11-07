@@ -23,6 +23,7 @@ let paddleY = (canvas.height - 20);
 //control variables 
 let rightPressed = false; 
 let leftPressed = false; 
+let powertext = document.getElementById("powerup");
 
 //brick variables 
 let brick_width = 75; 
@@ -81,6 +82,10 @@ function drawPaddle() {
     ctx.closePath(); 
 }
 
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+}
+
 function collisionDetection() {
     for(var i = 0; i < col_cnt; i++) {
         for(var j = 0; j < row_cnt; j++) {
@@ -91,6 +96,9 @@ function collisionDetection() {
                 score++; 
                 bricks[i][j].x = 0; 
                 bricks[i][j].y = 0; 
+                if(getRandomInt(4) == 2) {
+                    powerup.innerHTML = "POWER UP: Paddle Expansion";
+                }
 
             }
         }
