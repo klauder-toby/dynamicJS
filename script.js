@@ -8,8 +8,8 @@ let x = canvas.width / 2;
 let y = canvas.height - 30; 
 
 //change in x is 2, change in y is -2 
-let dx = 2; 
-let dy = -2; 
+let dx = 10; 
+let dy = -10; 
 
 //ball variables 
 let ballRadius = 10; 
@@ -103,18 +103,6 @@ function collisionDetection() {
                     powerup.innerHTML = "POWER UP: Paddle Expansion";
                     paddleWidth = 125; 
                     setTimeout(handlePaddlePower, 5000)
-                }
-                if(getRandomInt(4) == 3) {
-                    powerup.innerHTML = "POWER UP: Ball Slow"; 
-                    if(dy > 0) {
-                        dy = 2;
-                    } else if (dy < 0) {
-                        dy = -2;
-                    } else if (dx > 0) {
-                        dx = 2; 
-                    } else if (dx < 0) {
-                        dx = -2;
-                    }
                 }
             }
         }
