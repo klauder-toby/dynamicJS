@@ -1,104 +1,153 @@
-var can = document.getElementById("myCanvas"); 
-var ctx = can.getContext("2d");
-ctx.fillStyle = "#CCCCCC"; 
-can.addEventListener("click", canvasClicked);
+//get the canvas and set it to be 2 dimensional 
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
 
-class Location {
-  constructor(x, y) {
-    this.x = x; 
-    this.y = y; 
-  }
+//starting position of the ball is the mid point on the x-axis, and down 30 px from the top on the y-axis
+var x = canvas.width / 2; 
+var y = canvas.height - 30; 
+
+//change in x is 2, change in y is -2 
+var dx = 2; 
+var dy = -2; 
+
+//ball variables 
+var ballRadius = 10; 
+
+//paddle variables 
+var paddleHeight = 10; 
+var paddleWidth = 75; 
+var paddleX = (canvas.width - paddleWidth) / 2;
+
+//control variables 
+var rightPressed = false; 
+var leftPressed = false; 
+
+//brick variables 
+var brick_width = 75; 
+var brick_height = 20; 
+var brick_padding = 10; 
+var brick_offset_y = 30; 
+var brick_offset_x = 30; 
+var row_cnt = 3; 
+var col_cnt = 5; 
+
+//create and instantiate bricks 
+var bricks = [];
+for(var i = 0; i < col_cnt; i++) {
+    bricks[i] = [];
+    for(var j = 0; j < row_cnt; j++) {
+        bricks[i][j] = { x: 0, y: 0, hit: 0};
+    }
 }
 
-class Canvas {
-  constructor(squares) {
-    this.squares = squares; 
+//score variables 
+var score = 0; 
 
-    for(var i in squares) {
-      console.log(i);
-      squares[i].draw(); 
+function drawBricks() {
+    for(var i = 0; i < col_cnt; i++) {
+        for(var j = 0; j < row_count; j++) {
+            if(bricks[i][j].hit == 0) {
+                var x = (i * (brick_width + brick_padding)) + brick_offset_x; 
+                var y = (j * (brick_height + brick_padding)) + brick_offset_y; 
+                
+                bricks[i][j].x = x; 
+                bricks[i][j].y = y; 
+
+                ctx.beginPath(); 
+                ctx.rect(x, y, brick_width, brick_height);
+                ctx.fillStyle = "#0095DD"; 
+                ctx.fill(); 
+                ctx.closePath(); 
+        }
+    }
+    }
+}
+
+function drawBall() {
+    ctx.beginPath(); 
+    ctx.arc(x, y, ballRadius, 0, Math.PI * 2); 
+    ctx.fillStyle = "#0095DD";
+    ctx.fill();
+    ctx.closePath(); 
+}
+
+function drawPaddle() {
+    ctx.beginPath(); 
+    ctx.rect(paddleX, canvas.height-paddleHeight, paddleWidth, paddleHeight);
+    ctx.fillStyle = "#0095DD"; 
+    ctx.fill(); 
+    ctx.closePath(); 
+}
+
+function collisionDetection() {
+    for(var i = 0; i < col_cnt; i++) {
+        for(var j = 0; j < row_cnt; j++) {
+            var curr = bricks[i][j]; 
+            if(x > curr.x && x < curr.x + brick_width && y > curr.y &&  y < curr.y + brick_height) {
+                dy = -dy; 
+                curr.hit = 1; 
+                score++; 
+            }
+        }
+    }
+}
+
+function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height); 
+    drawBall(); 
+    drawPaddle(); 
+    collisionDetection();
+    drawBricks(); 
+    if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
+        dx = -dx; 
     }
 
-    ctx.beginPath();
-    ctx.moveTo(100, 0); 
-    ctx.lineTo(100, 300);
-    ctx.closePath(); 
-    ctx.lineWidth = 1;
-    ctx.strokeStyle = "black";
-    ctx.stroke(); 
+    if(y + dy < ballRadius) {
+        dy = -dy; 
+    } else if(y + dy > canvas.height-ballRadius) {
+        if(x > paddleWidth && x < paddleWidth + paddleX) {
+            dy = -dy; 
+        } else {
+            alert("Game Over."); 
+            document.location.reload(); 
+            clearInterval(interval); 
+        }
+    }
 
-    ctx.beginPath();
-    ctx.moveTo(200, 0); 
-    ctx.lineTo(200, 300);
-    ctx.closePath(); 
-    ctx.lineWidth = 1;
-    ctx.strokeStyle = "black";
-    ctx.stroke(); 
+    if(rightPressed) {
+        paddleX += 7; 
+        if(paddleX + paddleWidth > canvas.width) {
+            paddleX = canvas.width - paddleWidth; 
+        }
+    } else if (leftPressed) {
+        paddleX -= 7; 
+        if(paddleX < 0) {
+            paddleX = 0;
+        }
+    }
 
-    ctx.beginPath();
-    ctx.moveTo(0, 100); 
-    ctx.lineTo(300, 100);
-    ctx.closePath(); 
-    ctx.lineWidth = 1;
-    ctx.strokeStyle = "black";
-    ctx.stroke(); 
+    x += dx; 
+    y += dy; 
+}
 
-    ctx.beginPath();
-    ctx.moveTo(0, 200); 
-    ctx.lineTo(300,200);
-    ctx.closePath(); 
-    ctx.lineWidth = 1;
-    ctx.strokeStyle = "black";
-    ctx.stroke(); 
-  }
+document.addEventListener("keydown", keyDownHandler, false);
+document.addEventListener("keyup", keyUpHandler, false); 
+
+function keyDownHandler(e) {
+    if(e.key == "Right" || e.key == "ArrowRight") {
+        rightPressed = true;
+    } else if (e.key == "Left" || e.key == "ArrowLeft") {
+        leftPressed = true; 
+    }
+}
+
+function keyUpHandler(e) {
+    if(e.key == "Right" || e.key == "ArrowRight") {
+        rightPressed = false;
+    } else if (e.key == "Left" || e.key == "ArrowLeft") {
+        leftPressed = false; 
+    }
 }
 
 
-function canvasClicked(e) {
-   // Get the canvas and bounding client rectangle
-   const canvas = e.target;
-   const rect = canvas.getBoundingClientRect();
-   
-   // Compute click coordinates, relative to the canvas
-   const x = e.clientX - rect.left;
-   const y = e.clientY - rect.top;
-   
-   // Convert from pixel coordinates to row, column
-   const row = Math.floor(y * 3 / canvas.height);
-   const column = Math.floor(x * 3 / canvas.width);
-   
-   // Call clickLight
-   clickSquare(row, column);
-}
-
-
-class Square {
-  constructor(status, location) {
-    this.status = status; 
-    this.location = location; 
-  }
-  
-   draw() {
-       ctx.fillRect(this.location.x * 100, this.location.y * 100, 100, 100);
-   }
-}
-
-let square0 = new Square("blank", new Location(0, 0));
-let square1 = new Square("blank", new Location(0, 1));
-let square2 = new Square("blank", new Location(0, 2));
-let square3 = new Square("blank", new Location(1, 0));
-let square4 = new Square("blank", new Location(1, 1));
-let square5 = new Square("blank", new Location(1, 2));
-let square6 = new Square("blank", new Location(2, 0));
-let square7 = new Square("blank", new Location(2, 1));
-let square8 = new Square("blank", new Location(2, 2));
-let squares = [square0, square1, square2, square3, square4, square5, square6, square7, square8];
-let c = new Canvas(squares);
-
-function clickSquare(r, c) {
- for(var i in squares) {
-   if(squares[i].location.x == r && squares[i].location.y == c) {
-     squares[i].fillRect("#DDDDDD"); 
-   }
- } 
-}
+var interval = setInterval(draw, 10); 
