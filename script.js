@@ -8,8 +8,8 @@ let x = canvas.width / 2;
 let y = canvas.height - 30; 
 
 //change in x is 2, change in y is -2 
-let dx = 10; 
-let dy = -10; 
+let dx = 2; 
+let dy = -2; 
 
 //ball variables 
 let ballRadius = 10; 
@@ -92,7 +92,9 @@ function collisionDetection() {
             var curr = bricks[i][j]; 
             if(x > curr.x && x < curr.x + brick_width && y > curr.y &&  y < curr.y + brick_height) {
                 dy++; 
+                console.log(dy); 
                 dx++; 
+                console.log(dx); 
                 dy = -dy; 
                 curr.hit = 1; 
                 score++; 
