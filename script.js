@@ -8,11 +8,8 @@ let modal = document.getElementById("modalBox");
 
 var span = document.getElementsByClassName("close")[0];
 
-setTimeout(1000, showModal);
+modal.style.display = "block";
 
-function showModal() {
-    modal.style.display = "block";
-}
 
 
 span.onclick = function() {
