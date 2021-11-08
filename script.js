@@ -1,6 +1,5 @@
 //get the canvas and set it to be 2 dimensional 
 let canvas = document.getElementById("myCanvas");
-console.log(canvas); 
 let ctx = canvas.getContext("2d");
 
 //modal popup
