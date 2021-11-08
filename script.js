@@ -206,7 +206,7 @@ function draw() {
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false); 
 document.addEventListener("keyup", function(event) {
-  if (event.key === 13) {
+  if (event.keyCode === 13) {
     onModalClose(); 
   }
 });
