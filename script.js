@@ -8,15 +8,20 @@ let modal = document.getElementById("modalBox");
 var span = document.getElementsByClassName("close")[0];
 
 let interval; 
+let row_cnt;
+let bricks = [];
 
 modal.style.display = "block";
+span.onclick = onModalClose; 
 
-let range = document.getElementById("bricks");
-
-span.onclick = function() {
-  row_cnt = range.ariaValueNow;
-  console.log(row_cnt);
-  console.log(range.ariaValueNow);
+function onModalClose() {
+  row_cnt = document.getElementById("bricks").value;
+  for(var i = 0; i < col_cnt; i++) {
+      bricks[i] = [];
+      for(var j = 0; j < row_cnt; j++) {
+          bricks[i][j] = { x: 0, y: 0, hit: 0};
+      }
+  }
   modal.style.display = "none";
   interval = setInterval(draw, 10); 
 }
@@ -30,7 +35,7 @@ let dx = 2;
 let dy = -2; 
 
 //ball variables 
-let ballRadius = 10; 
+let ballRadius = 11; 
 
 //paddle variables 
 let paddleHeight = 10; 
@@ -51,17 +56,7 @@ let brick_height = 20;
 let brick_padding = 10; 
 let brick_offset_y = 30; 
 let brick_offset_x = 30; 
-let row_cnt = 3;
 let col_cnt = 5; 
-
-//create and instantiate bricks 
-let bricks = [];
-for(var i = 0; i < col_cnt; i++) {
-    bricks[i] = [];
-    for(var j = 0; j < row_cnt; j++) {
-        bricks[i][j] = { x: 0, y: 0, hit: 0};
-    }
-}
 
 //score variables 
 var score = 0; 
@@ -210,6 +205,13 @@ function draw() {
 
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false); 
+document.addEventListener("keyup", function(event) {
+  if (event.key === 13) {
+    onModalClose(); 
+  }
+});
+
+
 
 function keyDownHandler(e) {
     if(e.key == "Right" || e.key == "ArrowRight") {
