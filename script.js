@@ -9,10 +9,12 @@ var span = document.getElementsByClassName("close")[0];
 
 modal.style.display = "block";
 
+let interval; 
 
 
 span.onclick = function() {
   modal.style.display = "none";
+  interval = setInterval(draw, 10); 
 }
 
 window.onclick = function(event) {
@@ -51,7 +53,7 @@ let brick_height = 20;
 let brick_padding = 10; 
 let brick_offset_y = 30; 
 let brick_offset_x = 30; 
-let row_cnt = 3; 
+let row_cnt = document.getElementById("bricks"); 
 let col_cnt = 5; 
 
 //create and instantiate bricks 
@@ -227,4 +229,3 @@ function keyUpHandler(e) {
     }
 }
 
-var interval = setInterval(draw, 10); 
