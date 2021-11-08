@@ -173,7 +173,7 @@ function winDetection() {
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     random = getRandomInt(8); 
-    console.log(doument.getElementById("bricks"));
+    console.log(document.getElementById("bricks"));
     drawBall();
     drawPaddle();
     drawBricks(); 
