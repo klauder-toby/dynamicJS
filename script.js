@@ -3,6 +3,28 @@ let canvas = document.getElementById("myCanvas");
 console.log(canvas); 
 let ctx = canvas.getContext("2d");
 
+//modal popup
+let modal = document.getElementById("modalBox");
+
+var span = document.getElementsByClassName("close")[0];
+
+setTimeout(1000, showModal);
+
+function showModal() {
+    modal.style.display = "block";
+}
+
+
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
 //starting position of the ball is the mid point on the x-axis, and down 30 px from the top on the y-axis
 let x = canvas.width / 2; 
 let y = canvas.height - 30; 
@@ -155,7 +177,7 @@ function winDetection() {
 
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    random = getRandomInt(4); 
+    random = getRandomInt(8); 
     drawBall();
     drawPaddle();
     drawBricks(); 
