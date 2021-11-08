@@ -25,7 +25,9 @@ p {
     left: 0;
     top: 0;
     text-align: center; 
-    width: 100%; 
+    width: 50%; 
+    margin-left: 25%; 
+    margin-right: 25%;
     height: 100%; 
     overflow: auto; 
     background-color: rgba(0,0,0,0.4); 

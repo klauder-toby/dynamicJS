@@ -108,13 +108,14 @@ function collisionDetection() {
             var curr = bricks[i][j]; 
             if(x > curr.x && x < curr.x + brick_width && y > curr.y &&  y < curr.y + brick_height) {
                 if(dy < 0) {
-                    dy--; 
+                    dy = dy - 0.5; 
                 } else if (dy > 0) {
-                    dy++; 
-                } else if (dx < 0) {
-                    dx--; 
+                    dy = dy + 0.5; 
+                }
+                if (dx < 0) {
+                    dx = dx - 0.5; 
                 } else if (dx > 0) {
-                    dx++; 
+                    dx = dx + 0.5; 
                 }
                 dy = -dy; 
                 curr.hit = 1; 
