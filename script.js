@@ -11,9 +11,11 @@ let interval;
 
 modal.style.display = "block";
 
+let range = document.getElementById("bricks");
 
 span.onclick = function() {
   modal.style.display = "none";
+  row_cnt = range.ariaValueNow;
   interval = setInterval(draw, 10); 
 }
 
@@ -53,7 +55,7 @@ let brick_height = 20;
 let brick_padding = 10; 
 let brick_offset_y = 30; 
 let brick_offset_x = 30; 
-let row_cnt = document.getElementById("bricks").value;
+let row_cnt = 3;
 let col_cnt = 5; 
 
 //create and instantiate bricks 
