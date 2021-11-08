@@ -14,15 +14,11 @@ modal.style.display = "block";
 let range = document.getElementById("bricks");
 
 span.onclick = function() {
-  modal.style.display = "none";
   row_cnt = range.ariaValueNow;
+  console.log(row_cnt);
+  console.log(range.ariaValueNow);
+  modal.style.display = "none";
   interval = setInterval(draw, 10); 
-}
-
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
 }
 
 //starting position of the ball is the mid point on the x-axis, and down 30 px from the top on the y-axis
