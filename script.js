@@ -7,11 +7,14 @@ let modal = document.getElementById("modalBox");
 
 var span = document.getElementsByClassName("close")[0];
 
+let interval; 
+
 modal.style.display = "block";
 
 
 span.onclick = function() {
   modal.style.display = "none";
+  interval = setInterval(draw, 10); 
 }
 
 window.onclick = function(event) {
@@ -50,7 +53,7 @@ let brick_height = 20;
 let brick_padding = 10; 
 let brick_offset_y = 30; 
 let brick_offset_x = 30; 
-let row_cnt = 3;
+let row_cnt = document.getElementById("bricks").value;
 let col_cnt = 5; 
 
 //create and instantiate bricks 
@@ -173,7 +176,6 @@ function winDetection() {
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     random = getRandomInt(8); 
-    console.log(document.getElementById("bricks"));
     drawBall();
     drawPaddle();
     drawBricks(); 
@@ -227,4 +229,3 @@ function keyUpHandler(e) {
     }
 }
 
-interval = setInterval(draw, 10); 
