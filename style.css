@@ -18,6 +18,10 @@ p {
     text-align: center; 
 }
 
+#explanation {
+    float: left; 
+}
+
 .modal {
     display: none;
     position: fixed; 
