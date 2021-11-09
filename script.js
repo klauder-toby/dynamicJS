@@ -13,6 +13,8 @@ let x;
 let y; 
 let paddleX;
 let paddleY;
+let enableEnter = false;
+
 
 modal.style.display = "block";
 span.onclick = onModalClose; 
@@ -213,6 +215,13 @@ function draw() {
 
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false); 
+document.addEventListener("keyup", function(event) {
+  if (event.keyCode === 13 && !enableEnter) {
+    onModalClose(); 
+    enableEnter = true; 
+  }
+});
+
 
 
 function keyDownHandler(e) {
