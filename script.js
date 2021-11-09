@@ -15,26 +15,38 @@ let paddleX;
 let paddleY;
 let enableEnter = false;
 
-
+//show the modal display - when the X (close button) is clicked, call the hide function onModalClose()
 modal.style.display = "block";
 span.onclick = onModalClose; 
 
 function onModalClose() {
-
+  
+  //get the values for both range input elements and assign them to the appropriate value 
   row_cnt = document.getElementById("bricks").value;
   col_cnt = document.getElementById("brickscol").value; 
+
+  //calculate the appropriate width based on the number of blocks (their width) plus padding 
   canvas.width = (brick_width * col_cnt) + 2*(brick_offset_x) + brick_padding * (col_cnt - 1); 
+
   x = canvas.width / 2; 
   y = canvas.height - 30; 
+
+  //calculate the starting location of the paddle based on the previous values 
   paddleX = ((brick_width * col_cnt) + 2*(brick_offset_x) + brick_padding * (col_cnt - 1) - paddleWidth) / 2;
   paddleY = (canvas.height - 20); 
+
+  //populate the bricks array to fill the rows and columns specified by user via range elements
   for(var i = 0; i < col_cnt; i++) {
       bricks[i] = [];
       for(var j = 0; j < row_cnt; j++) {
           bricks[i][j] = { x: 0, y: 0, hit: 0};
       }
   }
+
+  //hide the modal 
   modal.style.display = "none";
+
+  //start the animations
   interval = setInterval(draw, 10); 
 }
 
@@ -67,21 +79,25 @@ let brick_padding = 10;
 let brick_offset_y = 30; 
 let brick_offset_x = 30; 
 let col_cnt = 5; 
-
-//score variables 
-var score = 0; 
 var random; 
 
+//function that draws the bricks on the screen 
 function drawBricks() {
+    //for each column
     for(var i = 0; i < col_cnt; i++) {
+        //for each row 
         for(var j = 0; j < row_cnt; j++) {
+            //if the individual brick has not yet been hit 
             if(bricks[i][j].hit == 0) {
+                //calculate the location where the brick should be drawn 
                 var x = (i * (brick_width + brick_padding)) + brick_offset_x; 
                 var y = (j * (brick_height + brick_padding)) + brick_offset_y; 
                 
+                //set the x and y coordinates of the individual brick 
                 bricks[i][j].x = x; 
                 bricks[i][j].y = y; 
 
+                //draw the individual brick at the provided location
                 ctx.beginPath(); 
                 ctx.rect(x, y, brick_width, brick_height);
                 ctx.fillStyle = "#0095DD"; 
@@ -92,6 +108,7 @@ function drawBricks() {
     }
 }
 
+//function that draws the ball at the provided location (x,y) 
 function drawBall() {
     ctx.beginPath(); 
     ctx.arc(x, y, ballRadius, 0, Math.PI * 2); 
@@ -100,6 +117,7 @@ function drawBall() {
     ctx.closePath(); 
 }
 
+//function that draws the paddle at the provided location (paddleX, paddleY)
 function drawPaddle() {
     ctx.beginPath(); 
     ctx.rect(paddleX, paddleY, paddleWidth, paddleHeight);
@@ -108,15 +126,23 @@ function drawPaddle() {
     ctx.closePath(); 
 }
 
+//function returns a random number 
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
+//bread and butter of this game, collision detection 
 function collisionDetection() {
+    //for each column 
     for(var i = 0; i < col_cnt; i++) {
+        //for each row 
         for(var j = 0; j < row_cnt; j++) {
+            //get the current brick 
             var curr = bricks[i][j]; 
+            //check to see if the current location is within the range of the bricks width and height 
             if(x > curr.x && x < curr.x + brick_width && y > curr.y &&  y < curr.y + brick_height) {
+
+                //we want to increase the speed of the ball when a brick is hit - if it's negative make it more negative, if it's positive make it more positive. 
                 if(dy < 0) {
                     dy = dy - 0.5; 
                 } else if (dy > 0) {
@@ -128,9 +154,9 @@ function collisionDetection() {
                 }
                 dy = -dy; 
                 curr.hit = 1; 
-                score++; 
                 bricks[i][j].x = 0; 
                 bricks[i][j].y = 0; 
+                
                 if(random == 2) {
                     powerup.innerHTML = "POWER UP: Paddle Expansion";
                     paddleWidth = 125; 
