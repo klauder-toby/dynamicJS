@@ -12,7 +12,6 @@
   <body>
     <h1>Breakout: Remastered</h1>
     <canvas id="myCanvas" width="480" height="320" style="border: 1px solid black"> </canvas>
-    <p id="explanation">Hello I float to the left.</p>
     <p id="powerup">POWER UP: </p>
 
     <div id="modalBox" class="modal">
@@ -27,6 +26,8 @@
         <label for="vol">Number of Cols:</label>
         <input type="range" id="brickscol" name="bricks" min="5" max="8" step="1" oninput="this.nextElementSibling.value = this.value">
         <output>7</output>
+        <br> 
+        <p> <strong>Instructions: </strong> <br> Use the Left and Right arrow keys to move the paddle. Hit the ball back to break all the bricks. Occasionally, breaking a brick will grant you a powerup! </p>
 
       </div>
 
