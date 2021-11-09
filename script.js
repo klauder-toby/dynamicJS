@@ -215,14 +215,6 @@ function draw() {
 
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false); 
-document.addEventListener("keyup", function(event) {
-  if (event.keyCode === 13 && !enableEnter) {
-    onModalClose(); 
-    enableEnter = true; 
-  }
-});
-
-
 
 function keyDownHandler(e) {
     if(e.key == "Right" || e.key == "ArrowRight") {
@@ -233,6 +225,10 @@ function keyDownHandler(e) {
 }
 
 function keyUpHandler(e) {
+    if (e.key === 13 && !enableEnter) {
+        onModalClose(); 
+        enableEnter = true; 
+      }
     if(e.key == "Right" || e.key == "ArrowRight") {
         rightPressed = false;
     } else if (e.key == "Left" || e.key == "ArrowLeft") {
