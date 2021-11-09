@@ -3,8 +3,6 @@ let canvas = document.getElementById("myCanvas");
 let ctx = canvas.getContext("2d");
 //modal popup
 let modal = document.getElementById("modalBox");
-let winmodal = document.getElementById("winBox");
-winmodal.style.display = "none"; 
 
 var span = document.getElementsByClassName("close")[0];
 
@@ -53,13 +51,8 @@ function onModalClose() {
 }
 
 function showSettingsModal() {
-    winmodal.style.display = "none"; 
     modal.style.display = "block"; 
-}
-
-function showModal() {
-    winmodal.style.display = "block"; 
-    setTimeout(3000, showSettingsModal); 
+    span.onclick = onModalClose(); 
 }
 
 
@@ -211,7 +204,7 @@ function winDetection() {
   }
   clearInterval(interval); 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  showModal(); 
+  showSettingsModal(); 
 }
 
 function draw() {
