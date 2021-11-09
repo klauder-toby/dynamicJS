@@ -9,6 +9,8 @@ var span = document.getElementsByClassName("close")[0];
 let interval; 
 let row_cnt;
 let bricks = [];
+let x; 
+let y; 
 
 modal.style.display = "block";
 span.onclick = onModalClose; 
@@ -18,6 +20,8 @@ function onModalClose() {
   row_cnt = document.getElementById("bricks").value;
   col_cnt = document.getElementById("brickscol").value; 
   canvas.width = (brick_width * col_cnt) + 2*(brick_offset_x) + brick_padding * (col_cnt - 1); 
+  x = canvas.width / 2; 
+  y = canvas.height - 30; 
   for(var i = 0; i < col_cnt; i++) {
       bricks[i] = [];
       for(var j = 0; j < row_cnt; j++) {
@@ -28,9 +32,8 @@ function onModalClose() {
   interval = setInterval(draw, 10); 
 }
 
-//starting position of the ball is the mid point on the x-axis, and down 30 px from the top on the y-axis
-let x = canvas.width / 2; 
-let y = canvas.height - 30; 
+
+
 
 //change in x is 2, change in y is -2 
 let dx = 2; 
