@@ -49,13 +49,6 @@ function onModalClose() {
   interval = setInterval(draw, 10); 
 }
 
-function showSettingsModal() {
-    modal.style.display = "block"; 
-    span.onclick = onModalClose(); 
-    enableEnter = false; 
-}
-
-
 
 
 //change in x is 2, change in y is -2 
@@ -202,9 +195,9 @@ function winDetection() {
       } 
     }
   }
-  clearInterval(interval); 
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  showSettingsModal(); 
+  alert("You won! - Hit enter to play again."); 
+  document.location.reload(); 
+  clearInterval(interval)
 }
 
 function draw() {
@@ -227,7 +220,7 @@ function draw() {
             dy = -dy;
         }
         else {
-            alert("GAME OVER");
+            alert("Game over - Hit enter to play again.");
             document.location.reload();
             clearInterval(interval); 
         }
