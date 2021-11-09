@@ -1,7 +1,6 @@
 //get the canvas and set it to be 2 dimensional 
 let canvas = document.getElementById("myCanvas");
 let ctx = canvas.getContext("2d");
-
 //modal popup
 let modal = document.getElementById("modalBox");
 
@@ -15,7 +14,10 @@ modal.style.display = "block";
 span.onclick = onModalClose; 
 
 function onModalClose() {
+
   row_cnt = document.getElementById("bricks").value;
+  col_cnt = document.getElementById("brickscol").value; 
+  canvas.width = (brick_width * col_cnt) + 2*(brick_offset_x) + brick_padding * (col_cnt - 1); 
   for(var i = 0; i < col_cnt; i++) {
       bricks[i] = [];
       for(var j = 0; j < row_cnt; j++) {
@@ -111,8 +113,7 @@ function collisionDetection() {
                     dy = dy - 0.5; 
                 } else if (dy > 0) {
                     dy = dy + 0.5; 
-                }
-                if (dx < 0) {
+                } else if (dx < 0) {
                     dx = dx - 0.5; 
                 } else if (dx > 0) {
                     dx = dx + 0.5; 
