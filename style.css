@@ -18,6 +18,7 @@ p {
     text-align: center; 
 }
 
+
 .modal {
     display: none;
     position: fixed; 
@@ -33,10 +34,10 @@ p {
   
   .modal-content {
     background-color: #fefefe;
-    margin: 50%; 
+    margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 33%; 
+    width: 25%; 
   }
   
   .close {
