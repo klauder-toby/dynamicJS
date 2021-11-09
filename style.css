@@ -33,9 +33,7 @@ p {
   
   .modal-content {
     background-color: #fefefe;
-    margin-left: 33%; 
-    margin-right: 33%; 
-    margin-bottom: 50%; 
+    margin: 50%; 
     padding: 20px;
     border: 1px solid #888;
     width: 33%; 
