@@ -17,7 +17,6 @@ let enableEnter = false;
 
 //show the modal display - when the X (close button) is clicked, call the hide function onModalClose()
 modal.style.display = "block";
-span.onclick = onModalClose; 
 
 function onModalClose() {
   
@@ -53,6 +52,7 @@ function onModalClose() {
 function showSettingsModal() {
     modal.style.display = "block"; 
     span.onclick = onModalClose(); 
+    enableEnter = false; 
 }
 
 
