@@ -3,6 +3,8 @@ let canvas = document.getElementById("myCanvas");
 let ctx = canvas.getContext("2d");
 //modal popup
 let modal = document.getElementById("modalBox");
+let winmodal = document.getElementById("winBox");
+winmodal.style.display = "none"; 
 
 var span = document.getElementsByClassName("close")[0];
 
@@ -48,6 +50,16 @@ function onModalClose() {
 
   //start the animations
   interval = setInterval(draw, 10); 
+}
+
+function showSettingsModal() {
+    winmodal.style.display = "none"; 
+    modal.style.display = "block"; 
+}
+
+function showModal() {
+    winmodal.style.display = "block"; 
+    setTimeout(3000, showSettingsModal); 
 }
 
 
@@ -197,9 +209,9 @@ function winDetection() {
       } 
     }
   }
-  alert("Game Over - You Win!"); 
-  document.location.reload(); 
   clearInterval(interval); 
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  showModal(); 
 }
 
 function draw() {
