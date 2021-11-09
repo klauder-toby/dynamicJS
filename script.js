@@ -11,6 +11,8 @@ let row_cnt;
 let bricks = [];
 let x; 
 let y; 
+let paddleX;
+let paddleY;
 
 modal.style.display = "block";
 span.onclick = onModalClose; 
@@ -22,6 +24,8 @@ function onModalClose() {
   canvas.width = (brick_width * col_cnt) + 2*(brick_offset_x) + brick_padding * (col_cnt - 1); 
   x = canvas.width / 2; 
   y = canvas.height - 30; 
+  paddleX = (canvas.width - paddleWidth) / 2;
+  paddleY = (canvas.height - 20); 
   for(var i = 0; i < col_cnt; i++) {
       bricks[i] = [];
       for(var j = 0; j < row_cnt; j++) {
@@ -45,8 +49,7 @@ let ballRadius = 11;
 //paddle variables 
 let paddleHeight = 10; 
 let paddleWidth = 75; 
-let paddleX = (canvas.width - paddleWidth) / 2;
-let paddleY = (canvas.height - 20); 
+
 
 //control variables 
 let rightPressed = false; 
