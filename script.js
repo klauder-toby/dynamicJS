@@ -213,12 +213,6 @@ function draw() {
 
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false); 
-document.addEventListener("keyup", function(event) {
-  if (event.keyCode === 13) {
-    onModalClose(); 
-  }
-});
-
 
 
 function keyDownHandler(e) {
