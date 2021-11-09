@@ -225,7 +225,7 @@ function keyDownHandler(e) {
 }
 
 function keyUpHandler(e) {
-    if (e.key === 13 && !enableEnter) {
+    if (e.key == "Enter" && !enableEnter) {
         onModalClose(); 
         enableEnter = true; 
       }
