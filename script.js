@@ -24,7 +24,7 @@ function onModalClose() {
   canvas.width = (brick_width * col_cnt) + 2*(brick_offset_x) + brick_padding * (col_cnt - 1); 
   x = canvas.width / 2; 
   y = canvas.height - 30; 
-  paddleX = (canvas.width - paddleWidth) / 2;
+  paddleX = ((brick_width * col_cnt) + 2*(brick_offset_x) + brick_padding * (col_cnt - 1) - paddleWidth) / 2;
   paddleY = (canvas.height - 20); 
   for(var i = 0; i < col_cnt; i++) {
       bricks[i] = [];
