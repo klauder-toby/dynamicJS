@@ -220,7 +220,7 @@ function draw() {
             dy = -dy;
         }
         else {
-            alert("Game over - Hit enter to play again.");
+            alert("Game over - Hit enter to play again. ");
             document.location.reload();
             clearInterval(interval); 
         }
