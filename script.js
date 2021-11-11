@@ -220,7 +220,7 @@ function draw() {
             dy = -dy;
         }
     }
-    if (y + dy > canvas.height) {
+    if (y + dy > canvas.height && y > paddleHeight) {
         alert("Game over - Hit enter to play again. ");
         document.location.reload();
         clearInterval(interval); 
