@@ -216,7 +216,7 @@ function draw() {
         dy = -dy;
     } //ball bounce off paddle check 
     else if(y + dy > canvas.height-ballRadius - paddleHeight) {
-        if(x - 5 > paddleX && x < paddleX + paddleWidth + 5) {
+        if(x > paddleX + 5 && x < paddleX + paddleWidth - 5) {
             dy = -dy;
         }
         else {
