@@ -137,6 +137,7 @@ function collisionDetection() {
         for(var j = 0; j < row_cnt; j++) {
             //get the current brick 
             var curr = bricks[i][j]; 
+            if(curr.hit == 0) {
             //check to see if the current location is within the range of the bricks width and height 
             if(x > curr.x && x < curr.x + brick_width && y > curr.y &&  y < curr.y + brick_height) {
 
@@ -152,8 +153,6 @@ function collisionDetection() {
                 }
                 dy = -dy; 
                 curr.hit = 1; 
-                bricks[i][j].x = 0; 
-                bricks[i][j].y = 0; 
                 
                 if(random == 2) {
                     powerup.innerHTML = "POWER UP: Paddle Expansion";
@@ -174,7 +173,8 @@ function collisionDetection() {
                     setTimeout(handleBallSlow, 3000); 
                 }
             }
-        }
+            }
+    }
     }
 }
 
