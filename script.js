@@ -215,15 +215,15 @@ function draw() {
     if(y + dy < ballRadius) {
         dy = -dy;
     } //ball bounce off paddle check 
-    else if(y + dy > canvas.height-ballRadius - paddleHeight) {
+    else if(y + dy > canvas.height-ballRadius) {
         if(x > paddleX && x < paddleX + paddleWidth) {
             dy = -dy;
         }
-    }
-    if (y + dy > canvas.height && y > paddleHeight) {
-        alert("Game over - Hit enter to play again. ");
-        document.location.reload();
-        clearInterval(interval); 
+        else {
+            alert("Game over - Hit enter to play again. ");
+            document.location.reload();
+            clearInterval(interval); 
+        }
     }
     
     if(rightPressed && paddleX < canvas.width-paddleWidth) {
