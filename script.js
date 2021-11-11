@@ -220,7 +220,11 @@ function draw() {
             dy = -dy;
         }
     }
-    if((x > paddleX && x < paddleX + paddleWidth) && y + dy > canvas.height) {
+    if(((x > paddleX && x < paddleX + paddleWidth) && y + dy > canvas.height)) {
+        alert("Game over - Hit enter to play again. ");
+        document.location.reload();
+        clearInterval(interval); 
+    } else if(!(x > paddleX && x < paddleX + paddleWidth) && y + dy > canvas.height) {
         alert("Game over - Hit enter to play again. ");
         document.location.reload();
         clearInterval(interval); 
